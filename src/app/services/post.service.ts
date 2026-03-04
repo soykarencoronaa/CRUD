@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-// Exportamos la interfaz para que se pueda importar { Post }
 export interface Post {
   _id?: string;
   title: string;
@@ -10,9 +8,9 @@ export interface Post {
 }
 
 @Injectable({
-  providedIn: 'root'          // Esto lo hace inyectable globalmente
+  providedIn: 'root' 
 })
-export class PostService {    // ← export class (obligatorio)
+export class PostService { 
 
   private apiUrl = 'https://crudcrud.com/api/c14bd53b9c674faf920e1d0772d275a1/posts';
 
@@ -27,12 +25,10 @@ export class PostService {    // ← export class (obligatorio)
   }
 
   updatePost(id: string, post: Post): Observable<any> {
-    // PUT: url + '/' + id + body (como dice la guía)
     return this.http.put(`${this.apiUrl}/${id}`, post);
   }
 
   deletePost(id: string): Observable<any> {
-    // DELETE: solo url + '/' + id (como dice la guía)
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }
